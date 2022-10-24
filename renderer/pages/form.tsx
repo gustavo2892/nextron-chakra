@@ -22,6 +22,7 @@ import { Select } from "../components/Form/Select";
 import { Textarea } from "../components/Form/Textarea";
 import { RadioGroup } from "../components/Form/RadioGroup";
 import { Checkbox } from "../components/Form/Checkbox";
+import { CheckboxGroup } from "../components/Form/CheckboxGroup";
 
 type CreateUserFormData = {
   name: string;
@@ -32,10 +33,11 @@ type CreateUserFormData = {
   description: string;
   radio: string;
   rememberMe: boolean;
+  stringArray: string[];
 };
 
 function Next() {
-  const { register, handleSubmit, formState, setValue, control } = useForm({
+  const { register, handleSubmit, formState, setValue, control, reset } = useForm({
     resolver: yupResolver(createUserFormSchema),
   });
 
@@ -54,6 +56,7 @@ function Next() {
     setValue('description', 'Teste123', { shouldValidate: true });
     setValue('radio', '1', { shouldValidate: true });
     setValue('rememberMe', true, { shouldDirty: true });
+    setValue('stringArray', ['Naruto'], { shouldValidate: true })
   };
   
   return (
@@ -148,6 +151,17 @@ function Next() {
                     {...register("rememberMe")}
                   />
                 </SimpleGrid>
+                <SimpleGrid minChildWidth="240px" spacing={["6", "8"]} w="100%">
+                  <CheckboxGroup
+                    name="stringArray"
+                    label="Qual voce gosta?"
+                    error={formState.errors.stringArray}
+                    control={control}
+                    options={
+                      [{ label: 'Naruto', value: 'Naruto' }, { label: 'Sasuke', value: 'Sasuke' }, { label: 'Kakashi', value: 'Kakashi' }]
+                    }
+                  />
+                </SimpleGrid>
               </VStack>
 
               <Flex mt="8" justify="flex-end">
@@ -162,6 +176,17 @@ function Next() {
                     colorScheme="pink"
                   >
                     Preencher Automatico
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      reset();
+                      setValue('rememberMe', false, { shouldDirty: true });
+                      setValue('stringArray', [], { shouldValidate: false });
+                      setValue('radio', null, { shouldValidate: false });
+                    }}
+                    colorScheme="blue"
+                  >
+                    Resetar formulário
                   </Button>
                   <Button
                     colorScheme="pink"

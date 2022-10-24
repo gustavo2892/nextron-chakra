@@ -10,5 +10,6 @@ export const createUserFormSchema = yup.object().shape({
   gender: yup.string().required('Gênero obrigatório'),
   description: yup.string().required('Descrição obrigatório'),
   radio: yup.string().required('Selecione uma opção'),
-  rememberMe: yup.boolean()
+  rememberMe: yup.boolean(),
+  stringArray: yup.array().min(1, 'Selecione pelo menos uma opcao').required('Campo obrigatório'),
 });
