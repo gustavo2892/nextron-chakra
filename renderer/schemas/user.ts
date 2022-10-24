@@ -9,5 +9,6 @@ export const createUserFormSchema = yup.object().shape({
   ], 'As senhas precisam ser iguais'),
   gender: yup.string().required('Gênero obrigatório'),
   description: yup.string().required('Descrição obrigatório'),
-  radio: yup.string().required('Selecione uma opção')
+  radio: yup.string().required('Selecione uma opção'),
+  rememberMe: yup.boolean()
 });

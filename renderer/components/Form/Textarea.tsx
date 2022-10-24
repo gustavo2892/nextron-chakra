@@ -1,7 +1,7 @@
 import {
   FormControl,
   FormLabel,
-  Textarea  as ChakraTextarea,
+  Textarea as ChakraTextarea,
   TextareaProps as ChakraTextareaProps,
   FormErrorMessage,
 } from "@chakra-ui/react";
@@ -13,10 +13,13 @@ interface TextareaProps extends ChakraTextareaProps {
   label?: string;
   error?: FieldError | Merge<FieldError, FieldErrorsImpl<any>>;
   labelColor?: string[];
-  isRequired?: boolean,
+  isRequired?: boolean;
 }
 
-const TextareaBase: ForwardRefRenderFunction<HTMLTextAreaElement, TextareaProps> = (
+const TextareaBase: ForwardRefRenderFunction<
+  HTMLTextAreaElement,
+  TextareaProps
+> = (
   { name, label, error = null, labelColor, isRequired = false, ...rest },
   ref
 ) => {
@@ -39,7 +42,11 @@ const TextareaBase: ForwardRefRenderFunction<HTMLTextAreaElement, TextareaProps>
         size="lg"
         {...rest}
       />
-      {!!error && <FormErrorMessage>{typeof error?.message === "string" && error?.message}</FormErrorMessage>}
+      {!!error && (
+        <FormErrorMessage>
+          {typeof error?.message === "string" && error?.message}
+        </FormErrorMessage>
+      )}
     </FormControl>
   );
 };

@@ -30,7 +30,11 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
         size="lg"
         {...rest}
       />
-      {!!error && <FormErrorMessage>{typeof error?.message === "string" && error?.message}</FormErrorMessage>}
+      {!!error && (
+        <FormErrorMessage>
+          {typeof error?.message === "string" && error?.message}
+        </FormErrorMessage>
+      )}
     </FormControl>
   );
 };

@@ -5,32 +5,42 @@ import {
   RadioGroup as ChakraRadioGroup,
   FormControl,
   FormErrorMessage,
-  FormLabel
+  FormLabel,
 } from "@chakra-ui/react";
-import { FieldError, Merge, FieldErrorsImpl, Controller } from "react-hook-form";
-import { Option } from '../../models/form';
+import {
+  FieldError,
+  Merge,
+  FieldErrorsImpl,
+  Controller,
+  Control,
+  FieldValues,
+} from "react-hook-form";
+import { Option } from "../../models/form";
 
 interface RadioGroupProps {
   name: string;
   options: Option[];
-  control: any;
+  control: Control<FieldValues, any>;
   label?: string;
   error?: FieldError | Merge<FieldError, FieldErrorsImpl<any>>;
 }
 
-export const RadioGroupBase = ({ name, error, label, options, control, ...rest }: RadioGroupProps, ref) => {
+const RadioGroupBase = (
+  { name, error, label, options, control }: RadioGroupProps,
+  ref
+) => {
   return (
     <FormControl isInvalid={!!error}>
       {!!label && <FormLabel as="legend">{label}</FormLabel>}
       <Controller
-        render={({
-          field: { onChange, value }
-        }) => (
+        render={({ field: { onChange, value } }) => (
           <ChakraRadioGroup onChange={onChange} value={value} ref={ref}>
             <Stack direction="row">
-              {
-                options.map((option) => <Radio key={option.value} value={option.value}>{option.label}</Radio>)
-              }
+              {options.map((option) => (
+                <Radio key={option.value} value={option.value}>
+                  {option.label}
+                </Radio>
+              ))}
             </Stack>
           </ChakraRadioGroup>
         )}
@@ -38,10 +48,12 @@ export const RadioGroupBase = ({ name, error, label, options, control, ...rest }
         control={control}
       />
       {!!error && (
-        <FormErrorMessage>{typeof error?.message === "string" && error?.message}</FormErrorMessage>
+        <FormErrorMessage>
+          {typeof error?.message === "string" && error?.message}
+        </FormErrorMessage>
       )}
     </FormControl>
   );
-}
+};
 
 export const RadioGroup = forwardRef(RadioGroupBase);

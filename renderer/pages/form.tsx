@@ -21,6 +21,7 @@ import { Input } from "../components/Form/Input";
 import { Select } from "../components/Form/Select";
 import { Textarea } from "../components/Form/Textarea";
 import { RadioGroup } from "../components/Form/RadioGroup";
+import { Checkbox } from "../components/Form/Checkbox";
 
 type CreateUserFormData = {
   name: string;
@@ -30,6 +31,7 @@ type CreateUserFormData = {
   gender: string;
   description: string;
   radio: string;
+  rememberMe: boolean;
 };
 
 function Next() {
@@ -44,12 +46,16 @@ function Next() {
   };
 
   const click = () => {
-    setValue('gender', 'MALE');
-    setValue('name', 'Gustavo Vidal de Freitas');
-    setValue('description', 'Teste123');
-    setValue('radio', '1')
+    setValue('gender', 'MALE', { shouldValidate: true });
+    setValue('name', 'Gustavo', { shouldValidate: true });
+    setValue('email', 'teste@teste.com', { shouldValidate: true });
+    setValue('password', '123456', { shouldValidate: true });
+    setValue('password_confirmation', '123456', { shouldValidate: true });
+    setValue('description', 'Teste123', { shouldValidate: true });
+    setValue('radio', '1', { shouldValidate: true });
+    setValue('rememberMe', true, { shouldDirty: true });
   };
-  console.log('Esse eh o formState.errors.gender => ', formState.errors.gender);
+  
   return (
     <Fragment>
       <Head>
@@ -135,22 +141,28 @@ function Next() {
                       [{ label: 'Option 1', value: '1' }, { label: 'Option 2', value: '2' }]
                     }
                   />
+                  <Checkbox 
+                    name="rememberMe"
+                    label="Lembrar de mim"
+                    control={control}
+                    {...register("rememberMe")}
+                  />
                 </SimpleGrid>
               </VStack>
 
               <Flex mt="8" justify="flex-end">
                 <HStack spacing="4">
-                  <Button
-                    onClick={() => click()}
-                    colorScheme="pink"
-                  >
-                    SetFieldValue
-                  </Button>
                   <Link href="/home" passHref>
                     <Button as="a" colorScheme="blue">
                       Cancelar
                     </Button>
                   </Link>
+                  <Button
+                    onClick={() => click()}
+                    colorScheme="pink"
+                  >
+                    Preencher Automatico
+                  </Button>
                   <Button
                     colorScheme="pink"
                     type="submit"
