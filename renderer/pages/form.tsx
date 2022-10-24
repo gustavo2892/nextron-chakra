@@ -1,4 +1,4 @@
-import React from "react";
+import { Fragment } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { BasicCard } from "../components/BasicCard";
@@ -12,6 +12,7 @@ import {
   VStack,
   SimpleGrid,
   Button,
+  Radio
 } from "@chakra-ui/react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -20,6 +21,7 @@ import { createUserFormSchema } from "../schemas/user";
 import { Input } from "../components/Form/Input";
 import { Select } from "../components/Form/Select";
 import { Textarea } from "../components/Form/Textarea";
+import { RadioGroup } from "../components/Form/RadioGroup";
 
 type CreateUserFormData = {
   name: string;
@@ -28,10 +30,11 @@ type CreateUserFormData = {
   password_confirmation: string;
   gender: string;
   description: string;
+  radio: string;
 };
 
 function Next() {
-  const { register, handleSubmit, formState } = useForm({
+  const { register, handleSubmit, formState, setValue, control } = useForm({
     resolver: yupResolver(createUserFormSchema),
   });
 
@@ -41,8 +44,15 @@ function Next() {
     console.log("Esses sao os values => ", values);
   };
 
+  const click = () => {
+    setValue('gender', 'MALE');
+    setValue('name', 'Gustavo Vidal de Freitas');
+    setValue('description', 'Teste123');
+    setValue('radio', '1')
+  };
+
   return (
-    <React.Fragment>
+    <Fragment>
       <Head>
         <title>Next - Nextron (with-typescript-emotion)</title>
       </Head>
@@ -119,12 +129,29 @@ function Next() {
                     error={formState.errors.description}
                   />
                 </SimpleGrid>
+                <SimpleGrid minChildWidth="240px" spacing={["6", "8"]} w="100%">
+                  <RadioGroup 
+                    name="radio"
+                    label="Selecione uma opcao"
+                    error={formState.errors.radio}
+                    control={control}
+                    options={
+                      [{ label: 'Option 1', value: '1' }, { label: 'Option 2', value: '2' }]
+                    }
+                  />
+                </SimpleGrid>
               </VStack>
 
               <Flex mt="8" justify="flex-end">
                 <HStack spacing="4">
+                  <Button
+                    onClick={() => click()}
+                    colorScheme="pink"
+                  >
+                    SetFieldValue
+                  </Button>
                   <Link href="/home" passHref>
-                    <Button as="a" colorScheme="whiteAlpha">
+                    <Button as="a" colorScheme="blue">
                       Cancelar
                     </Button>
                   </Link>
@@ -141,7 +168,7 @@ function Next() {
           </Flex>
         </Box>
       </div>
-    </React.Fragment>
+    </Fragment>
   );
 }
 
