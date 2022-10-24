@@ -116,12 +116,9 @@ function Next() {
                     {...register("gender")}
                     error={formState.errors.gender}
                     defaultValue={null}
-                    placeholder='Selecione uma opção'
-                  >
-                    <option value='MALE'>Masculino</option>
-                    <option value='FEMALE'>Feminino</option>
-                    <option value='OTHERS'>Outros</option>
-                  </Select >
+                    placeholder="Selecione uma opção"
+                    options={[{ label: 'Masculino', value: 'MALE' }, { label: 'Feminino', value: 'FEMALE' }, { label: 'Outros', value: 'OTHERS' }]}
+                  />
                   <Textarea
                     name="description"
                     label="Descrição"

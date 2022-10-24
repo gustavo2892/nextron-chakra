@@ -7,6 +7,7 @@ import {
 } from "@chakra-ui/react";
 import { FieldError, Merge, FieldErrorsImpl } from "react-hook-form";
 import { forwardRef, ForwardRefRenderFunction } from "react";
+import { Option } from '../../models/form';
 
 interface SelectFieldProps extends ChakraSelectFieldProps {
   name: string;
@@ -14,13 +15,14 @@ interface SelectFieldProps extends ChakraSelectFieldProps {
   error?: FieldError | Merge<FieldError, FieldErrorsImpl<any>>;
   labelColor?: string[];
   isRequired?: boolean;
+  options: Option[];
 }
 
 const SelectBase: ForwardRefRenderFunction<
   HTMLSelectElement,
   SelectFieldProps
 > = (
-  { name, label, error = null, labelColor, isRequired = false, ...rest },
+  { name, label, error = null, labelColor, isRequired = false, options, ...rest },
   ref
 ) => {
   return (
@@ -41,7 +43,11 @@ const SelectBase: ForwardRefRenderFunction<
         ref={ref}
         size="lg"
         {...rest}
-      />
+      >
+        {
+          options.map((option) => <option value={option.value} key={option.value}>{option.label}</option>)
+        }
+      </ChakraSelect>
       {!!error && <FormErrorMessage>{error.message}</FormErrorMessage>}
     </FormControl>
   );
