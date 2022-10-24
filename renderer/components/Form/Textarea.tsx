@@ -39,7 +39,7 @@ const TextareaBase: ForwardRefRenderFunction<HTMLTextAreaElement, TextareaProps>
         size="lg"
         {...rest}
       />
-      {!!error && <FormErrorMessage>{error.message}</FormErrorMessage>}
+      {!!error && <FormErrorMessage>{typeof error?.message === "string" && error?.message}</FormErrorMessage>}
     </FormControl>
   );
 };

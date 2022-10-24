@@ -1,7 +1,6 @@
 import { Fragment } from "react";
 import Head from "next/head";
 import Link from "next/link";
-import { Button } from "@chakra-ui/react";
 
 import { BasicCard } from "../components/BasicCard";
 import { TitleCard } from "../components/TitleCard";

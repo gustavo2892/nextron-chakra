@@ -38,7 +38,7 @@ export const RadioGroupBase = ({ name, error, label, options, control, ...rest }
         control={control}
       />
       {!!error && (
-        <FormErrorMessage>{error.message}</FormErrorMessage>
+        <FormErrorMessage>{typeof error?.message === "string" && error?.message}</FormErrorMessage>
       )}
     </FormControl>
   );

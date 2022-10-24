@@ -11,8 +11,7 @@ import {
   HStack,
   VStack,
   SimpleGrid,
-  Button,
-  Radio
+  Button
 } from "@chakra-ui/react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -50,7 +49,7 @@ function Next() {
     setValue('description', 'Teste123');
     setValue('radio', '1')
   };
-
+  console.log('Esse eh o formState.errors.gender => ', formState.errors.gender);
   return (
     <Fragment>
       <Head>

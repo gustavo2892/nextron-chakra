@@ -48,7 +48,7 @@ const SelectBase: ForwardRefRenderFunction<
           options.map((option) => <option value={option.value} key={option.value}>{option.label}</option>)
         }
       </ChakraSelect>
-      {!!error && <FormErrorMessage>{error.message}</FormErrorMessage>}
+      {!!error && <FormErrorMessage>{typeof error?.message === "string" && error?.message}</FormErrorMessage>}
     </FormControl>
   );
 };
