@@ -23,6 +23,7 @@ import { Textarea } from "../components/Form/Textarea";
 import { RadioGroup } from "../components/Form/RadioGroup";
 import { Checkbox } from "../components/Form/Checkbox";
 import { CheckboxGroup } from "../components/Form/CheckboxGroup";
+import { Switch } from '../components/Form/Switch';
 
 type CreateUserFormData = {
   name: string;
@@ -34,6 +35,7 @@ type CreateUserFormData = {
   radio: string;
   rememberMe: boolean;
   stringArray: string[];
+  enableEmails: boolean;
 };
 
 function Next() {
@@ -56,7 +58,8 @@ function Next() {
     setValue('description', 'Teste123', { shouldValidate: true });
     setValue('radio', '1', { shouldValidate: true });
     setValue('rememberMe', true, { shouldDirty: true });
-    setValue('stringArray', ['Naruto'], { shouldValidate: true })
+    setValue('stringArray', ['Naruto'], { shouldValidate: true });
+    setValue('enableEmails', true, { shouldDirty: true });
   };
   
   return (
@@ -161,6 +164,14 @@ function Next() {
                       [{ label: 'Naruto', value: 'Naruto' }, { label: 'Sasuke', value: 'Sasuke' }, { label: 'Kakashi', value: 'Kakashi' }]
                     }
                   />
+                  <Switch
+                    name="enableEmails"
+                    label="Ativar alertas de e-mail?"
+                    error={formState.errors.enableEmails}
+                    control={control}
+                    confirmText="Sim"
+                    negativeText="Não"
+                  />
                 </SimpleGrid>
               </VStack>
 
@@ -183,6 +194,7 @@ function Next() {
                       setValue('rememberMe', false, { shouldDirty: true });
                       setValue('stringArray', [], { shouldValidate: false });
                       setValue('radio', null, { shouldValidate: false });
+                      setValue('enableEmails', false, { shouldDirty: true });
                     }}
                     colorScheme="blue"
                   >
