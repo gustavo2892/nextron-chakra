@@ -11,8 +11,10 @@
     "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
+    "@types/react-draft-wysiwyg": "1.13.4",
     "electron-serve": "1.1.0",
-    "electron-store": "8.1.0"
+    "electron-store": "8.1.0",
+    "react-draft-wysiwyg": "1.15.0"
   },
   "devDependencies": {
     "@chakra-ui/icons": "2.0.11",
@@ -22,13 +24,20 @@
     "@emotion/react": "11.10.0",
     "@emotion/styled": "11.10.0",
     "@hookform/resolvers": "2.9.10",
+    "@types/draft-js": "0.11.9",
+    "@types/draftjs-to-html": "0.8.1",
+    "@types/html-to-draftjs": "1.4.0",
     "@types/node": "16.11.7",
     "@types/react": "18.0.8",
     "@types/react-datepicker": "4.4.2",
+    "@types/sanitize-html": "2.6.2",
     "date-fns": "2.29.3",
+    "draft-js": "0.11.7",
+    "draftjs-to-html": "0.9.1",
     "electron": "20.1.0",
     "electron-builder": "23.3.3",
     "framer-motion": "7.6.1",
+    "html-to-draftjs": "1.5.0",
     "idb-keyval": "6.2.0",
     "next": "12.2.5",
     "nextron": "8.2.0",
@@ -37,6 +46,7 @@
     "react-dom": "18.2.0",
     "react-hook-form": "7.38.0",
     "react-webcam": "7.0.1",
+    "sanitize-html": "2.7.2",
     "typescript": "4.8.2",
     "yup": "0.32.11"
   }
