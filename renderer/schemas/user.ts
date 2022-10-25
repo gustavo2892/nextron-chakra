@@ -12,5 +12,8 @@ export const createUserFormSchema = yup.object().shape({
   radio: yup.string().required('Selecione uma opção'),
   rememberMe: yup.boolean(),
   stringArray: yup.array().min(1, 'Selecione pelo menos uma opcao').required('Campo obrigatório'),
-  enableEmails: yup.boolean()
+  enableEmails: yup.boolean(),
+  date: yup.string().required('A data é obrigatória'),
+  startDate: yup.string().required('A data é obrigatória'),
+  endDate: yup.string().required('A data é obrigatória')
 });

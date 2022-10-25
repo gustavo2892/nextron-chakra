@@ -37,6 +37,9 @@ type CreateUserFormData = {
   rememberMe: boolean;
   stringArray: string[];
   enableEmails: boolean;
+  date: string;
+  startDate: string;
+  endDate: string;
 };
 
 function Next() {
@@ -175,12 +178,6 @@ function Next() {
                   />
                 </SimpleGrid>
                 <SimpleGrid minChildWidth="240px" spacing={["6", "8"]} w="100%">
-                  <DatePicker
-                    control={control}
-                    name="date"
-                    label="Selecione a data"
-                    error={formState.errors.date}
-                  />
                   <DatePicker
                     control={control}
                     name="date"

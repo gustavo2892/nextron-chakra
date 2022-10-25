@@ -25,7 +25,6 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
         name={name}
         id={name}
         focusBorderColor="pink.500"
-        variant="filled"
         ref={ref}
         size="lg"
         {...rest}

@@ -5,14 +5,14 @@ import ptBR from 'date-fns/locale/pt-BR';
 
 import * as S from "./styles";
 
-export interface DatePickerProps {
+interface DatePickerProps {
   control: Control<FieldValues, any>;
   name: string;
   label?: string;
   error?: FieldError | Merge<FieldError, FieldErrorsImpl<any>>;
 }
 
-export const DatePickerBase = (
+const DatePickerBase = (
   { name, label, error, control }: DatePickerProps,
   ref
 ) => {
@@ -25,9 +25,15 @@ export const DatePickerBase = (
             selected={value ? new Date(value) : new Date()}
             onChange={(date: Date) => onChange(date)}
             ref={ref}
-            customInput={<Input />}
+            customInput={
+              <Input
+                focusBorderColor="pink.500"
+                size="lg"
+              />
+            }
             popperPlacement="top"
             locale={ptBR}
+            dateFormat="dd/MM/yyyy"
           />
         )}
         name={name}

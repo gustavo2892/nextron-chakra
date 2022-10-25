@@ -15,7 +15,7 @@ import {
   Control,
   FieldValues,
 } from "react-hook-form";
-import { Option } from "../../models/form";
+import { Option } from "../../../models/form";
 
 interface RadioGroupProps {
   name: string;

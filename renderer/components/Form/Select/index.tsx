@@ -7,7 +7,7 @@ import {
 } from "@chakra-ui/react";
 import { FieldError, Merge, FieldErrorsImpl } from "react-hook-form";
 import { forwardRef, ForwardRefRenderFunction } from "react";
-import { Option } from "../../models/form";
+import { Option } from "../../../models/form";
 
 interface SelectFieldProps extends ChakraSelectFieldProps {
   name: string;
