@@ -880,12 +880,18 @@ export const Container = styled.div<ContainerProps>`
       cursor: not-allowed;
     `}
 
+  &:focus-within {
+    border-color: #D53F8C;
+    box-shadow: 0 0 0 1px #D53F8C;
+  }
+
   ${props =>
     props.hasError == 'true' &&
     css`
       border-color: #E53E3E;
       box-shadow: 0 0 0 1px #e53e3e;
     `}
+
 }
 
 .rdw-editor-toolbar {

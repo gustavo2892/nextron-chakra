@@ -55,7 +55,7 @@ function Home() {
   const handleCreateUser: SubmitHandler<CreateUserFormData> = async (
     values
   ) => {
-    console.log("Esses sao os values => ", values);
+    console.log("Values => ", values);
   };
 
   const click = () => {
@@ -72,7 +72,7 @@ function Home() {
     setValue("date", new Date(), { shouldValidate: true });
     setValue("textEditor", '<p>Teste 123</p>', { shouldValidate: true });
   };
-  console.log('Esse eh o watch => ', watch('textEditor'))
+  
   return (
     <Box>
       <Flex w="100%" my="6" maxWidth={1480} mx="auto" px="6">

@@ -65,8 +65,6 @@ const TextEditorBase = (
     const formatedValue = draftToHtml(convertToRaw(editorText.getCurrentContent()))?.trim();
 
     if (formatedValue != htmlValue) {
-      console.log('Esse eh o htmlValue => ', htmlValue);
-
       const blocksFromHtml = htmlToDraft(htmlValue);
       const { contentBlocks, entityMap } = blocksFromHtml
       const contentState = ContentState.createFromBlockArray(
@@ -184,7 +182,6 @@ const TextEditorBase = (
               // @ts-ignore: Unreachable code error
               handlePastedText={handlePastedText}
               onEditorStateChange={(e) => {
-                console.log('Entrou aqui, analisar => ', e)
                 setEditorText(e);
               }}
             />
