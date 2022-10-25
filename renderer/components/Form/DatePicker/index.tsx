@@ -1,11 +1,46 @@
-import React, { useState } from "react";
+import React, { forwardRef } from "react";
+import { FormControl, FormErrorMessage, FormLabel, Input } from "@chakra-ui/react";
+import { FieldError, Merge, FieldErrorsImpl, Control, FieldValues, Controller } from "react-hook-form";
+import ptBR from 'date-fns/locale/pt-BR';
 
-import * as S from './styles';
+import * as S from "./styles";
 
-export const DatePicker = () => {
-  const [startDate, setStartDate] = useState(new Date());
+export interface DatePickerProps {
+  control: Control<FieldValues, any>;
+  name: string;
+  label?: string;
+  error?: FieldError | Merge<FieldError, FieldErrorsImpl<any>>;
+}
 
+export const DatePickerBase = (
+  { name, label, error, control }: DatePickerProps,
+  ref
+) => {
   return (
-    <S.DatePicker selected={startDate} onChange={(date:Date) => setStartDate(date)} />
+    <FormControl isInvalid={!!error} w="100%">
+      {!!label && <FormLabel as="legend">{label}</FormLabel>}
+      <Controller
+        render={({ field: { onChange, value } }) => (
+          <S.DatePicker
+            selected={value ? new Date(value) : new Date()}
+            onChange={(date: Date) => onChange(date)}
+            ref={ref}
+            customInput={<Input />}
+            popperPlacement="top"
+            locale={ptBR}
+          />
+        )}
+        name={name}
+        control={control}
+      />
+
+      {!!error && (
+        <FormErrorMessage>
+          {typeof error?.message === "string" && error?.message}
+        </FormErrorMessage>
+      )}
+    </FormControl>
   );
 };
+
+export const DatePicker = forwardRef(DatePickerBase);

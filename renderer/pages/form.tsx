@@ -175,7 +175,18 @@ function Next() {
                   />
                 </SimpleGrid>
                 <SimpleGrid minChildWidth="240px" spacing={["6", "8"]} w="100%">
-                  <DatePicker />
+                  <DatePicker
+                    control={control}
+                    name="date"
+                    label="Selecione a data"
+                    error={formState.errors.date}
+                  />
+                  <DatePicker
+                    control={control}
+                    name="date"
+                    label="Selecione a data"
+                    error={formState.errors.date}
+                  />
                 </SimpleGrid>
               </VStack>
               <Flex mt="8" justify="flex-end">

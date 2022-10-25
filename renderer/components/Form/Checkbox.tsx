@@ -30,6 +30,7 @@ const CheckboxBase = (
       <Controller
         render={({ field: { onChange, value } }) => (
           <ChakraCheckbox
+            name={name}
             isChecked={value}
             onChange={(e) => onChange(e.target.checked)}
             ref={ref}

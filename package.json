@@ -25,6 +25,7 @@
     "@types/node": "16.11.7",
     "@types/react": "18.0.8",
     "@types/react-datepicker": "4.4.2",
+    "date-fns": "2.29.3",
     "electron": "20.1.0",
     "electron-builder": "23.3.3",
     "framer-motion": "7.6.1",
