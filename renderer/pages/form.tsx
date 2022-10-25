@@ -24,6 +24,7 @@ import { RadioGroup } from "../components/Form/RadioGroup";
 import { Checkbox } from "../components/Form/Checkbox";
 import { CheckboxGroup } from "../components/Form/CheckboxGroup";
 import { Switch } from '../components/Form/Switch';
+import { DatePicker } from '../components/Form/DatePicker';
 
 type CreateUserFormData = {
   name: string;
@@ -173,8 +174,10 @@ function Next() {
                     negativeText="Não"
                   />
                 </SimpleGrid>
+                <SimpleGrid minChildWidth="240px" spacing={["6", "8"]} w="100%">
+                  <DatePicker />
+                </SimpleGrid>
               </VStack>
-
               <Flex mt="8" justify="flex-end">
                 <HStack spacing="4">
                   <Link href="/home" passHref>
