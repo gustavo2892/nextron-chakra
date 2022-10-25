@@ -22,7 +22,7 @@ const DatePickerBase = (
       <Controller
         render={({ field: { onChange, value } }) => (
           <S.DatePicker
-            selected={value ? new Date(value) : new Date()}
+            selected={value ? new Date(value) : null}
             onChange={(date: Date) => onChange(date)}
             ref={ref}
             customInput={

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import {
   Box,
   Flex,
@@ -22,6 +23,12 @@ import { CheckboxGroup } from "../components/Form/CheckboxGroup";
 import { Switch } from "../components/Form/Switch";
 import { DatePicker } from "../components/Form/DatePicker";
 
+const TextEditor = dynamic(() =>
+  import("../components/Form/TextEditor").then(module => module.TextEditor), {
+    ssr: false,
+  }
+);
+
 type CreateUserFormData = {
   name: string;
   email: string;
@@ -36,10 +43,11 @@ type CreateUserFormData = {
   date: string;
   startDate: string;
   endDate: string;
+  textEditor: string;
 };
 
 function Home() {
-  const { register, handleSubmit, formState, setValue, control, reset } =
+  const { register, handleSubmit, formState, setValue, control, reset, watch } =
     useForm({
       resolver: yupResolver(createUserFormSchema),
     });
@@ -61,8 +69,10 @@ function Home() {
     setValue("rememberMe", true, { shouldDirty: true });
     setValue("stringArray", ["Naruto"], { shouldValidate: true });
     setValue("enableEmails", true, { shouldDirty: true });
+    setValue("date", new Date(), { shouldValidate: true });
+    setValue("textEditor", '<p>Teste 123</p>', { shouldValidate: true });
   };
-
+  console.log('Esse eh o watch => ', watch('textEditor'))
   return (
     <Box>
       <Flex w="100%" my="6" maxWidth={1480} mx="auto" px="6">
@@ -177,6 +187,14 @@ function Home() {
                 label="Selecione a data"
                 error={formState.errors.date}
               />
+              <TextEditor
+                control={control}
+                label="Digite o texto"
+                name="textEditor"
+                error={formState.errors.textEditor}
+                setValue={setValue}
+                htmlValue={watch('textEditor')}
+              />
             </SimpleGrid>
           </VStack>
           <Flex mt="8" justify="flex-end">
@@ -192,10 +210,12 @@ function Home() {
               <Button
                 onClick={() => {
                   reset();
-                  setValue("rememberMe", false, { shouldDirty: true });
+                  setValue("rememberMe", false, { shouldValidate: false });
                   setValue("stringArray", [], { shouldValidate: false });
                   setValue("radio", null, { shouldValidate: false });
-                  setValue("enableEmails", false, { shouldDirty: true });
+                  setValue("enableEmails", false, { shouldValidate: false });
+                  setValue("date", null, { shouldValidate: false });
+                  setValue("textEditor", '<p></p>', { shouldValidate: false });
                 }}
                 colorScheme="blue"
               >
